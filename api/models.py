@@ -27,6 +27,7 @@ class SubCategory(models.Model):
 class Store(models.Model):
     id = models.AutoField(primary_key=True)
     store_name = models.CharField(max_length=30, null=True)
+    store_image = models.ImageField(default=None)
 
     def __str__(self):
         return self.store_name
@@ -42,7 +43,7 @@ class User(models.Model):
         ('m', 'male'),
         ('f', 'female')
     )
-    gender = models.CharField(choices=gender_choices)
+    gender = models.CharField(max_length=2, choices=gender_choices)
     password = models.CharField(max_length=128, null=True, blank=True, default=None)
 
     @property
@@ -65,15 +66,14 @@ class ShopItem(models.Model):
     like = models.IntegerField(default=0)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     sub_category = models.ForeignKey(SubCategory, on_delete=models.CASCADE)
-    name = models.CharField(max_length=50)
     region = models.CharField(max_length=20)
     price = models.DecimalField(max_digits=6, decimal_places=2, default=None)
     stock_choices = (
-        ('t', 'true'),
-        ('f', 'false'),
+        (1, 'in stock'),
+        (2, 'not in stock'),
     )
-    stock = models.CharField(choices=stock_choices)
-    image = models.ImageField()
+    stock = models.IntegerField(choices=stock_choices)
+    item_image = models.ImageField(default=None)
 
     def __str__(self):
         return 'id="{id}" item_name="{item_name}"'.format(

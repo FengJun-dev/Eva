@@ -1,14 +1,15 @@
-from django.contrib.auth.models import User
+"""from django.contrib.auth.models import User
 from rest_framework import status
 from rest_framework import viewsets
 from rest_framework.decorators import detail_route, list_route
 from rest_framework.response import Response
-from api.serializers import UserSerializer, CategorySerializer
-from api.models import Category
+from api.serializers import UserSerializer, CategorySerializer, ShopItemSerializer
+from api.models import Category, ShopItem
 from rest_framework.decorators import api_view
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.renderers import JSONRenderer
 from rest_framework.parsers import JSONParser
+from rest_framework import viewsets
 # Create your views here.
 
 
@@ -29,16 +30,18 @@ def category_list(request):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-@csrf_exempt
-def category_detail(request, pk):
-    pass
+class
+
+
+
+
 
 
 
 '''class UserViewSet(viewsets.ModelViewSet):
-    """
+
     A viewset that provides the standard actions
-    """
+
     queryset = User.objects.all()
     serializer_class = UserSerializer
 
@@ -67,3 +70,5 @@ def category_detail(request, pk):
 
         serializer = self.get_serializer(recent_users, many=True)
         return Response(serializer.data)'''
+
+"""
