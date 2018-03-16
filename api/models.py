@@ -24,6 +24,14 @@ class SubCategory(models.Model):
         )
 
 
+class Store(models.Model):
+    id = models.AutoField(primary_key=True)
+    store_name = models.CharField(max_length=30, null=True)
+
+    def __str__(self):
+        return self.store_name
+
+
 class User(models.Model):
     id = models.AutoField(primary_key=True)
     email = models.EmailField(unique=True)
@@ -34,7 +42,7 @@ class User(models.Model):
         ('m', 'male'),
         ('f', 'female')
     )
-    gender = models.IntegerField(choices=gender_choices)
+    gender = models.CharField(choices=gender_choices)
     password = models.CharField(max_length=128, null=True, blank=True, default=None)
 
     @property
@@ -49,11 +57,27 @@ class User(models.Model):
         )
 
 
-class Product(models.Model):
+class ShopItem(models.Model):
     id = models.AutoField(primary_key=True)
+    item_name = models.CharField(max_length=128)
+    store = models.ForeignKey(Store, on_delete=models.CASCADE)
+    created = models.DateTimeField()
     like = models.IntegerField(default=0)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     sub_category = models.ForeignKey(SubCategory, on_delete=models.CASCADE)
     name = models.CharField(max_length=50)
     region = models.CharField(max_length=20)
     price = models.DecimalField(max_digits=6, decimal_places=2, default=None)
+    stock_choices = (
+        ('t', 'true'),
+        ('f', 'false'),
+    )
+    stock = models.CharField(choices=stock_choices)
+    image = models.ImageField()
+
+    def __str__(self):
+        return 'id="{id}" item_name="{item_name}"'.format(
+            id=self.id,
+            item_name=self.item_name,
+        )
+
