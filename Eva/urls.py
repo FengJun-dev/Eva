@@ -20,5 +20,5 @@ from api import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('category/', views.category_list, name='category_list'),
+    path('category/<int:pk>', views., name='category_list'),
 ]

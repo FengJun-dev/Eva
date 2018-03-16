@@ -81,3 +81,6 @@ class ShopItem(models.Model):
             item_name=self.item_name,
         )
 
+
+class UserComment(models.Model):
+    pass
