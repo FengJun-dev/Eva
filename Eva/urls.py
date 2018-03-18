@@ -15,10 +15,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from api import views
+from api.shop_item import ShopItemViewSet
+from rest_framework import routers
+
+router = routers.SimpleRouter()
+router.register(r'shop_item', ShopItemViewSet, base_name='shop_item')
 
 
-urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('category/<int:pk>', views., name='category_list'),
-]
